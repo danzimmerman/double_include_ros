@@ -9,6 +9,8 @@ int main(int argc, char* argv[])
 
     libwrap.getSomethingSrvCallback();
 
+    ROS_INFO_STREAM("The fake library function gimme_seventeen() returns" << FakeHeaderOnlyNamespace::gimme_seventeen());
+
     while (ros::ok())
     {
         ros::spin();
