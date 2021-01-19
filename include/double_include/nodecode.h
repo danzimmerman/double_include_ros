@@ -1,5 +1,4 @@
-#ifndef DOUBLE_INCLUDE_NODECODE_H
-#define DOUBLE_INCLUDE_NODECODE_H
+#pragma once
 
 #include <ros/ros.h>
 #include <double_include/FakeHeaderOnlyLibrary.h>
@@ -14,5 +13,3 @@ class LibWrapper
 };
 
 }
-
-#endif //DOUBLE_INCLUDE_NODECODE_H include guard

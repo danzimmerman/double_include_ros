@@ -1,6 +1,5 @@
 
-#ifndef DOUBLE_INCLUDE_FAKE_HEADER_ONLY_LIBRARY_H
-#define DOUBLE_INCLUDE_FAKE_HEADER_ONLY_LIBRARY_H
+#pragma once
 namespace FakeHeaderOnlyNamespace
 {
     int gimme_seventeen(void)
@@ -8,4 +7,3 @@ namespace FakeHeaderOnlyNamespace
         return 17;
     }
 }
-#endif //DOUBLE_INCLUDE_FAKE_HEADER_ONLY_LIBRARY_H include guard
