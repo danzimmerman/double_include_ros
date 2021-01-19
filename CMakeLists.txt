@@ -18,8 +18,8 @@ find_package(catkin REQUIRED COMPONENTS
 )
 
 ## System dependencies are found with CMake's conventions
-find_package(eigen3 REQUIRED)
-find_package(Boost REQUIRED COMPONENTS system chrono timer filesystem)
+#find_package(eigen3 REQUIRED)
+#find_package(Boost REQUIRED COMPONENTS system chrono timer filesystem)
 
 
 ## Uncomment this if the package has a setup.py. This macro ensures
@@ -123,8 +123,6 @@ catkin_package(
 include_directories(
   include
   ${catkin_INCLUDE_DIRS}
-  ${Boost_INCLUDE_DIRS}
-  ${EIGEN3_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
@@ -158,8 +156,6 @@ add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catk
 ## Specify libraries to link a library or executable target against
 target_link_libraries(${PROJECT_NAME}_node
   ${catkin_LIBRARIES}
-  ${Boost_LIBRARIES}
-  ${EIGEN3_LIBRARIES}
 )
 
 #############
