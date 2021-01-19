@@ -83,3 +83,16 @@ CMakeSettings.json
 
 # Local History for Visual Studio Code
 .history/
+
+# cmake other than CMakeLists.txt
+CMakeLists.txt.user
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Testing
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps
