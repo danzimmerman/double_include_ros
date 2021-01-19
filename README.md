@@ -144,4 +144,4 @@ Sorry, this is kind of a non-sequitur in the context of this repo, but `FakeHead
 Why is this not an issue for the *real* library?
 
  * Is it because we just *never actually do it*? (`pybind`-enabled DLL and test app should?)
- * Is it because of [incremental linking](https://docs.microsoft.com/en-us/cpp/build/reference/incremental-link-incrementally?view=msvc-160)
+ * Is it because of [incremental linking](https://docs.microsoft.com/en-us/cpp/build/reference/incremental-link-incrementally?view=msvc-160)?
