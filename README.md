@@ -60,7 +60,7 @@ Same error on Ubuntu 18.04 with ROS Melodic, so it's not just a windows-specific
 
 # `wip-fixes`
 
-Work in progress. 
+Work in progress to fix and understand.
 
 Relevant links:
  * Similar question [here](https://answers.ros.org/question/261570/proper-way-of-including-headers-in-catkin-c/)
@@ -69,7 +69,7 @@ Relevant links:
  * https://en.wikipedia.org/wiki/One_Definition_Rule
  * Why does OpenCL [not break the ODR](https://stackoverflow.com/questions/15960641/why-does-the-opencl-cl-hpp-header-only-wrapper-not-break-the-one-definition-ru)?
 
- ODR:
+ ## ODR:
  > Every program shall contain exactly one definition of every non-inline function or variable that is odr-used in that program; no diagnostic required. The definition can appear explicitly in the program, it can be found in the standard or a user-defined library, or (when appropriate) it is implicitly defined (see 12.1, 12.4 and 12.8). An inline function shall be defined in every translation unit in which it is odr-used.
 
  ❓ Why does this work on Visual Studio and XCode, then?
@@ -107,5 +107,34 @@ c:\Code\ros\workspaces\fake_ws>rosrun double_include double_include_node
 [ INFO] [1611081939.132300900]: Shutting down, ros::ok() returned false.
 ```
 
-Fixes:
+## Anon Namespace Fix:
  * [Anon namespaces or `static`?](https://stackoverflow.com/questions/154469/unnamed-anonymous-namespaces-vs-static-functions)
+
+ Good god:
+
+ ```cpp
+ #pragma once
+namespace FakeHeaderOnlyNamespace
+{
+    
+namespace { // anon namespace
+    int gimme_seventeen(void)
+        {
+            return 17;
+        }
+}
+ ```
+
+ Also works, more convenient modification than `static`.
+
+```bash
+c:\Code\ros\workspaces\fake_ws>rosrun double_include double_include_node
+[ INFO] [1611082535.172722300]: double_include_node executable works!
+[ INFO] [1611082535.173136400]: Callback fired from inside nodecode.cpp
+[ INFO] [1611082535.173354100]: The fake library function gimme_seventeen() returns 17
+[ INFO] [1611082535.173605000]: Shutting down, ros::ok() returned false.
+```
+
+## Why OK IN Visual Studio and Xcode? 
+
+to be decided

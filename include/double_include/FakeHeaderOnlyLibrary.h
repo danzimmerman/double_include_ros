@@ -3,13 +3,11 @@
 namespace FakeHeaderOnlyNamespace
 {
     
-class FakeHeaderOnlyClass
-{
-public:
+namespace { // anon namespace
     int gimme_seventeen(void)
         {
             return 17;
         }
-};
+}
     
 }
