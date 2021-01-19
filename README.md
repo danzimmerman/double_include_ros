@@ -1,4 +1,4 @@
-# Minimal Reproduction - `catkin` Double Include Issue
+# Minimal Reproduction - `catkin` double include issue
 
 This repository is a ROS package called `double_include` which is a minimal reproduction of a double-include issue.
 
@@ -54,7 +54,7 @@ C:\CODE\ROS\WORKSPACES\FAKE_WS\SRC
             double_include_node.cpp
             nodecode.cpp
 ```
-# Cross-Platform
+# Cross-platform
 
 Same error on Ubuntu 18.04 with ROS Melodic, so it's not just a windows-specific problem. 
 
@@ -107,8 +107,9 @@ c:\Code\ros\workspaces\fake_ws>rosrun double_include double_include_node
 [ INFO] [1611081939.132300900]: Shutting down, ros::ok() returned false.
 ```
 
-## Anon Namespace Fix:
+## Anon namespace fix:
  * [Anon namespaces or `static`?](https://stackoverflow.com/questions/154469/unnamed-anonymous-namespaces-vs-static-functions)
+ * [Superiority of unnammed namespace over `static`](https://stackoverflow.com/questions/4422507/superiority-of-unnamed-namespace-over-static)
 
  Good god:
 
@@ -122,6 +123,7 @@ namespace { // anon namespace
         {
             return 17;
         }
+    }
 }
  ```
 
@@ -135,6 +137,11 @@ c:\Code\ros\workspaces\fake_ws>rosrun double_include double_include_node
 [ INFO] [1611082535.173605000]: Shutting down, ros::ok() returned false.
 ```
 
-## Why OK IN Visual Studio and Xcode? 
+## Why does it work in Visual Studio and Xcode?
 
-to be decided
+Sorry, this is kind of a non-sequitur in the context of this repo, but `FakeHeaderOnlyLibrary.h` is a standin for a work library I actually use.
+
+Why is this not an issue for the *real* library?
+
+ * Is it because we just *never actually do it*? (`pybind`-enabled DLL and test app should?)
+ * Is it because of [incremental linking](https://docs.microsoft.com/en-us/cpp/build/reference/incremental-link-incrementally?view=msvc-160)
