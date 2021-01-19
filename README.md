@@ -1,6 +1,10 @@
 # Minimal Reproduction - `catkin` Double Include Issue
 
-**Problem**: Including the library `FakeHeaderOnlyLibrary.h` which defines a single function `gimme_seventeen()` fails if `nodecode.h` is included in both `nodecpp.cpp` and `double_include_node.cpp`. 
+This repository is a ROS package called `double_include` which is a minimal reproduction of a double-include issue.
+
+**Problem**: `catkin_make` can't build the package if `FakeHeaderOnlyLibrary.h` is included via `nodecode.h`.
+
+`nodecode.h` is included in `nodecpp.cpp` and `double_include_node.cpp`. 
 
 ```
 LINK Pass 1: command "C:\Long\Windows\Path\link.exe /nologo /millionoptions"
@@ -14,3 +18,25 @@ C:\Code\ros\workspaces\fake_ws\devel\lib\double_include\double_include_node.exe 
 
 The failure is the same with classic `#ifndef DOUBLE_INCLUDE_WHATEVER_H` include guards or with `#pragma once` (this branch).
 
+The double include is happening via `#include <double_include/nodecode.h>`. This problem doesn't happen if the library is a "professional" header-only library like `Eigen`. 
+
+Source tree:
+
+```
+C:\CODE\ROS\WORKSPACES\FAKE_WS\SRC
+│   CMakeLists.txt
+│
+└───double_include
+    │   CMakeLists.txt
+    │   package.xml
+    │   README.md
+    │
+    ├───include
+    │   └───double_include
+    │           FakeHeaderOnlyLibrary.h
+    │           nodecode.h
+    │
+    └───src
+            double_include_node.cpp
+            nodecode.cpp
+```
